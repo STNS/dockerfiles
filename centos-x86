@@ -1,0 +1,22 @@
+FROM centos:latest
+RUN yum -y install epel-release
+RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git
+
+RUN gem install bundler --no-ri --no-rdoc
+
+# install go
+ENV GOLANG_VERSION 1.6
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
+
+RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
+	&& tar -C /usr/local -xzf golang.tar.gz \
+	&& rm golang.tar.gz
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN go get github.com/tools/godep 
+
+# install chef
+RUN curl -L https://www.opscode.com/chef/install.sh | bash

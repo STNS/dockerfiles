@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -yq  --force-yes build-essential devscripts debhelper fakeroot ruby reprepro curl git --no-install-recommends
+
+RUN gem install bundler --no-ri --no-rdoc
+
+# install go
+ENV GOLANG_VERSION 1.6
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
+
+RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
+	&& tar -C /usr/local -xzf golang.tar.gz \
+	&& rm golang.tar.gz
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN go get github.com/tools/godep
+
+# install chef
+RUN curl -L https://www.opscode.com/chef/install.sh | bash
