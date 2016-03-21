@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:6
 RUN yum -y install epel-release
 RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git
 
@@ -16,7 +16,7 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN go get github.com/tools/godep 
+RUN go get github.com/tools/godep
 
 # install chef
 RUN curl -L https://www.opscode.com/chef/install.sh | bash
