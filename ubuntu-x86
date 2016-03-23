@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-RUN apt-get update && apt-get install -yq  --force-yes build-essential devscripts debhelper fakeroot ruby reprepro curl git --no-install-recommends
+RUN apt-get update && apt-get install -yq  --force-yes build-essential devscripts debhelper fakeroot ruby reprepro curl git libpam0g-dev --no-install-recommends
 
 RUN gem install bundler --no-ri --no-rdoc
 

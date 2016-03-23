@@ -1,6 +1,6 @@
 FROM centos:6
 RUN yum -y install epel-release
-RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git
+RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel
 
 RUN gem install bundler --no-ri --no-rdoc
 
