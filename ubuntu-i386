@@ -2,7 +2,7 @@ FROM 32bit/ubuntu:14.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
                 curl git ca-certificates ruby \
-                build-essential devscripts debhelper fakeroot ruby reprepro --no-install-recommends libpam0g-dev
+                build-essential devscripts debhelper fakeroot ruby reprepro libpam0g-dev --no-install-recommends
 
 RUN gem install bundler --no-ri --no-rdoc
 
