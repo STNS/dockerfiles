@@ -1,8 +1,6 @@
 FROM centos:6
 RUN yum -y install epel-release
-RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel
-
-RUN gem install bundler --no-ri --no-rdoc
+RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel openssl-devel readline-devel zlib-devel
 
 # install go
 ENV GOLANG_VERSION 1.6
@@ -17,6 +15,17 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN go get github.com/tools/godep
+
+# Install rbenv and ruby-build
+RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN ./root/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /root/.rbenv/bin:$PATH
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
+ENV CONFIGURE_OPTS --disable-install-doc
+RUN rbenv install 2.2.3
+RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
+RUN rbenv global 2.2.3 && rbenv exec gem install bundler && rbenv rehash
 
 # install chef
 RUN curl -L https://www.opscode.com/chef/install.sh | bash
