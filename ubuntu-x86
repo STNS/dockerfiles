@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update && apt-get install -yq  --force-yes build-essential devscripts debhelper fakeroot ruby reprepro curl git libpam0g-dev \
-  libreadline6-dev zlib1g-dev libssl-dev --no-install-recommends
+  libreadline6-dev zlib1g-dev libssl-dev expect --no-install-recommends
 
 # install go
 ENV GOLANG_VERSION 1.6

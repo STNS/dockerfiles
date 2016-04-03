@@ -1,6 +1,6 @@
 FROM toopher/centos-i386:centos6
 RUN yum -y install epel-release
-RUN yum -y install --enablerepo=epel curl git which sudo ruby ruby-devel rubygems tar rpmdevtools gcc pam-devel openssl-devel readline-devel zlib-devel
+RUN yum -y install --enablerepo=epel curl git which sudo ruby ruby-devel rubygems tar rpmdevtools gcc pam-devel openssl-devel readline-devel zlib-devel expect
 
 # install go
 ENV GOLANG_VERSION 1.6
