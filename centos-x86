@@ -1,6 +1,6 @@
 FROM centos:6
 RUN yum -y install epel-release
-RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel openssl-devel readline-devel zlib-devel expect
+RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel openssl-devel readline-devel zlib-devel expect sudo
 
 # install go
 ENV GOLANG_VERSION 1.6
