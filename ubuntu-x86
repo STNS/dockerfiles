@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -yq  --force-yes build-essential devscript
   libreadline6-dev zlib1g-dev libssl-dev expect --no-install-recommends
 
 # install go
-ENV GOLANG_VERSION 1.6
+ARG GOLANG_VERSION=${GOLANG_VERSION}
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
 
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \

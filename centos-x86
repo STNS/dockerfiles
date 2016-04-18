@@ -3,7 +3,7 @@ RUN yum -y install epel-release
 RUN yum install -y --enablerepo=epel rpmdevtools curl ruby rubygems createrepo rpm-sign git gcc pam-devel openssl-devel readline-devel zlib-devel expect sudo
 
 # install go
-ENV GOLANG_VERSION 1.6
+ARG GOLANG_VERSION=${GOLANG_VERSION}
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
 
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \

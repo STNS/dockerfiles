@@ -4,7 +4,7 @@ desc "build"
 task "build" do
   %w(centos ubuntu).each do |o|
     %w(x86 i386).each do |a|
-      sh "docker build --rm -f #{o}-#{a} -t pyama/stns:#{o}-#{a} ."
+      sh "docker build --build-arg GOLANG_VERSION=1.6.1 --rm -f #{o}-#{a} -t pyama/stns:#{o}-#{a} ."
     end
   end
 end
