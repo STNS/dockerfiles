@@ -23,9 +23,9 @@ RUN ./root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
 ENV CONFIGURE_OPTS --disable-install-doc
-RUN rbenv install 2.2.3
+RUN rbenv install 2.3.1
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
-RUN rbenv global 2.2.3 && rbenv exec gem install bundler && rbenv rehash
+RUN rbenv global 2.3.1 && rbenv exec gem install bundler && rbenv rehash
 
 # install chef
 RUN curl -L https://www.opscode.com/chef/install.sh | bash
