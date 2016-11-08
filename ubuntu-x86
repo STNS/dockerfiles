@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update && apt-get install -yq  --force-yes build-essential devscripts debhelper fakeroot ruby reprepro curl git libpam0g-dev \
-  libreadline6-dev zlib1g-dev libssl-dev expect sudo --no-install-recommends
+  libreadline6-dev zlib1g-dev libssl-dev expect sudo wget --no-install-recommends
 
 # install go
 ARG GOLANG_VERSION=${GOLANG_VERSION}
@@ -29,4 +29,5 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 RUN rbenv global 2.3.1 && rbenv exec gem install bundler && rbenv rehash
 
 # install chef
-RUN curl -L https://www.opscode.com/chef/install.sh | bash
+RUN wget https://packages.chef.io/stable/ubuntu/10.04/chef_12.8.1-1_amd64.deb
+RUN dpkg -i chef_12.8.1-1_amd64.deb

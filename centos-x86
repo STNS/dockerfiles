@@ -28,4 +28,4 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 RUN rbenv global 2.3.1 && rbenv exec gem install bundler && rbenv rehash
 
 # install chef
-RUN curl -L https://www.opscode.com/chef/install.sh | bash
+RUN yum install -y https://packages.chef.io/stable/el/6/chef-12.8.1-1.el6.x86_64.rpm
